@@ -1,0 +1,8 @@
+{
+  "label": "Django",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Django related information."
+  }
+}
