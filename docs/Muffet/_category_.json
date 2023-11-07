@@ -1,8 +1,8 @@
 {
-  "label": "Django",
-  "position": 4,
+  "label": "Muffet",
+  "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Django related information."
+    "description": "Muffet Document"
   }
 }

@@ -2,179 +2,28 @@
 sidebar_position: 1
 ---
 
-## 如何在 Django 中使用 tailwind 語法呢？
-在本教學中，我會來一步一步的教學如何在 Django 中啟用 Tailwind 功能～
-
-
-### 1. 使用 pip 來安裝 Django-tailwind 的 package
-
-```shell
-$ python -m pip install django-tailwind
-
+如何使用 local preview
 ------
-Collecting django-tailwind
-  Using cached django_tailwind-3.6.0-py3-none-any.whl (12 kB)
-Requirement already satisfied: django>=3.2.14 in ./virtualenv/lib/python3.11/site-packages (from django-tailwind) (4.2.6)
-Requirement already satisfied: asgiref<4,>=3.6.0 in ./virtualenv/lib/python3.11/site-packages (from django>=3.2.14->django-tailwind) (3.7.2)
-Requirement already satisfied: sqlparse>=0.3.1 in ./virtualenv/lib/python3.11/site-packages (from django>=3.2.14->django-tailwind) (0.4.4)
-Installing collected packages: django-tailwind
-Successfully installed django-tailwind-3.6.0
-```
+
+我們會在 local 開發的時候，會需要把頁面上的所 `HOST` 的那張 `JavaScript` 導入到 `local 端`。 用 `ModHeader` 這個小工具是因為，為了導到 `local` 開發，我們 `local` 可以起一個簡單的 server，來去 `Host` 現在這一家客戶的 `muffet` 檔案。
+
+一般來說，我們在 muffet 的 repo 中，當我們發一個 pr merge 到 main 分支，並且跑完 `CI/CD` 後，會 `compile` 成一個 `json` 檔案，我們會 `Host` 在這個地方，這個東西我們放在 `GCP` 上面(在 cloud storage 裡面)。
+
+> ---  
+> 當我在本地開發時，會需要把 `https://ecs.tagtoo.co/js/1165.js` 導入到我們的本地，他會偵測 `chrome browser` 所發出的 `HTTP`， `request` 中的 `header`  
+>    
+> ---  
+{:. block-tip}
+
+### ModHeader設定
+開啟 `ModHeader` chrome 插件，並點擊 `+` 選項，接著點擊 `Redirect URL` 選項，這時候會出現兩個 field，左邊的欄位輸入 `https://ecs.tagtoo.co/js/1165.js`，右邊的欄位輸入 `http://localhost:3000/1165.js`，再來進入這個文件 [muffet repo](https://github.com/Tagtoo/muffet/wiki/%5BMuffet%5D-%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8A)。
+
+Ps. 一開始 ModHeader 設定好，去 dev-tool 中的 network，會看到 `307 Internal Redirect`，他會去找 local 下 1165 的 js 檔案
+
+### muffet 檔案設定
+照著教學，先 `clone` 下來 muffet 的檔案，接著把進入資料夾後， 輸入 `npm install` 把一些插件下載下來後，就可以輸入以下指令， `npm run preview 1665`，再來就可以打開客戶的網站、打開 `dev tool`，進入到 `console` 的分頁，就可以開始開發了！
 
 
 
-
-### 2. 在 settings 啟用 tailwind 
-
-```py
-# settings
-
-INSTALLED_APPS = [
-  # other Django apps
-  'tailwind',  
-]
-```
-
-
-### 3. 在專案中新增 Tailwind CSS 的初始化資料夾
-
-```shell
-$ python manage.py tailwind init
-
-------
-Cookiecutter is not found, installing...
-WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
-Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
-To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
-....省略一大段
-
- [1/1] app_name (theme): theme
-Tailwind application 'theme' has been successfully created. Please add 'theme' to INSTALLED_APPS in settings.py, then run the following command to install Tailwind CSS dependencies: `python manage.py tailwind install`
-```
-
-輸入 `python manage.py tailwind init` 後，後面會要你填寫有關 `tailwind` 檔案的名稱，我這邊照著他的建議直接填上 `theme`
-
-
-
-### 4. 在 settings 啟用剛剛新增的 theme
-```py
-# settings
-INSTALLED_APPS = [
-  # other Django apps
-  'tailwind',
-  'theme'
-]
-```
-
-
-### 5. 註冊 tailwind 的名稱
-
-在 settings 新增以下這一段
-```py
-# settings
-TAILWIND_APP_NAME = 'theme'
-```
-
-
-### 6. 生成 tailwind 基礎文件
-
-```shell
-$ python3 manage.py tailwind install
-
-------
-added 135 packages, and audited 136 packages in 12s
-
-30 packages are looking for funding
-```
-
-
-
-### 7. 查看剛剛生成的文件
-
-剛剛 `install` 指令執行完後，可以在依照這個路徑 `your_tailwind_app_name/templates/base.html`，找到 tailwind 的範例文件，如果你已經有其他 `layout` 可以把這個基本文件刪掉，想要使用他的話也可以隨意擴展此基礎文件。
-
-
-
-### 8. 如果你不想要使用剛剛的 base.html 文件當作 layout，可以這樣來觸發 tailwind
-
-
-#### 8-1 我今天已經新增了一個自己的側邊欄檔案 `sidebar.html`，我希望把它當作我整個檔案的 `layout`
-```html
-<!-- online/templates/sidebar.html -->
-
-{% load static tailwind_tags %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  {% tailwind_css %}
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    我是側邊欄位文件
-  </h1>
-  
-  <div class="">
-    {% block content %}
-    {% endblock %}
-  </div>
-
-</body>
-</html>
-```
-
-#### 8-2 我新增一個 `index.html` 頁面，並且要有側邊欄
-
-```html
-<!-- online/templates/index.html -->
-
-{% extends 'sidebar.html' %}
-{% block content %}
-<h2 class="text-xl font-bold underline">
-    12312321312
-</h2>
-{% endblock %}
-```
-
-### 9. 啟動 tailwind server
-
-當想要設定的檔案都設定好後，就可以來啟動 `tailwind` 的 `server`
-
-```shell
-$ python3 manage.py tailwind start
-```
-
-啟動後輸入指定的連結，就可以看到你的 tailwind 成功被啟動了
-
-
-
-
-
-
-### 10. 自動更新 tailwind 的 package
-
-不過今天你想要更新 `tailwind` 語法的時候，希望網頁自動更新，吃到改到過後的 `tailwind`，你就會需要多安裝一個 `package`
-
-```shell
-$ python -m pip install django-browser-reload
-
-------
-Collecting django-browser-reload
-  Using cached django_browser_reload-1.12.0-py3-none-any.whl (12 kB)
-Requirement already satisfied: Django>=3.2 in ./virtualenv/lib/python3.11/site-packages (from django-browser-reload) (4.2.6)
-Requirement already satisfied: asgiref<4,>=3.6.0 in ./virtualenv/lib/python3.11/site-packages (from Django>=3.2->django-browser-reload) (3.7.2)
-Requirement already satisfied: sqlparse>=0.3.1 in ./virtualenv/lib/python3.11/site-packages (from Django>=3.2->django-browser-reload) (0.4.4)
-Installing collected packages: django-browser-reload
-Successfully installed django-browser-reload-1.12.0
-```
-
-
-
-
-
-
-參考連結：
-1. https://django-tailwind.readthedocs.io/en/latest/installation.html
-2. https://django-tailwind.readthedocs.io/en/latest/django_browser_reload.html
-
+Ps. 上面輸入的連結都是實際案例，實際上要根據客戶的 `ec ID` 來改變連結輸入，以上面的狀況來說 `1165` 就是不同客戶都會有不同的數字  
+Ps. 記得一定要用 npm ，用 yarn 會噴錯誤
