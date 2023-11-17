@@ -1,6 +1,6 @@
 ---
 title: ROR/HTML&CSS(05)
-sidebar_label: "DAY10. [ROR] HTML&CSS-5"
+sidebar_label: "DAY10. [ASTROCamp] HTML&CSS-5"
 description: HTML&CSS
 last_update:
   date: 2022-10-17

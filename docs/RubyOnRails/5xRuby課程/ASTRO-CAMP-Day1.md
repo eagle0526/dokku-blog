@@ -1,6 +1,6 @@
 ---
 title: ROR/GIT(01)
-sidebar_label: "DAY1. [ROR] Git-1"
+sidebar_label: "DAY1. [ASTROCamp] Git-1"
 description: GIT
 last_update:
   date: 2022-10-03

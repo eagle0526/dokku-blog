@@ -1,6 +1,6 @@
 ---
 title: ROR/JavaScript(03)
-sidebar_label: "DAY9. [ROR] JavaScript-3"
+sidebar_label: "DAY9. [ASTROCamp] JavaScript-3"
 description: JavaScript
 last_update:
   date: 2022-10-14

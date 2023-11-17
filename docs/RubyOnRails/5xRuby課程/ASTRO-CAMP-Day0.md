@@ -1,6 +1,6 @@
 ---
 title: ROR/Ruby
-sidebar_label: "DAY0. [ROR] Ruby"
+sidebar_label: "DAY0. [ASTROCamp] Ruby"
 description: RUBY安裝
 last_update:
   date: 2022-10-02
