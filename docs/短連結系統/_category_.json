@@ -1,0 +1,8 @@
+{
+  "label": "短連結系統",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Rails、Redis實作短連結系統."
+  }
+}

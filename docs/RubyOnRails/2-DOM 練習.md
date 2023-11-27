@@ -1,4 +1,12 @@
 ---
+title: ROR/DOM 練習
+sidebar_label: "2. [ROR] DOM 練習"
+description: DOM 練習
+last_update:
+  date: 2023-11-07
+keywords:
+  - ROR
+  - DOM
 sidebar_position: 2
 ---
 

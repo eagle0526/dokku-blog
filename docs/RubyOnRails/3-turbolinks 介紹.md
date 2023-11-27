@@ -1,7 +1,14 @@
 ---
-sidebar_position: 1
+title: ROR/turbolinks 介紹
+sidebar_label: "3. [ROR] turbolinks 介紹"
+description: turbolinks介紹
+last_update:
+  date: 2023-11-07
+keywords:
+  - ROR
+  - turbolinks
+sidebar_position: 3
 ---
-
 
 0、前言
 ------
