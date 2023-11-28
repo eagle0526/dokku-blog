@@ -38,7 +38,8 @@ Server SDKs - for Java, .NET, Node.js, PHP, Python, and Ruby
 
 ### 1-1、BrainTree刷卡的流程圖
 
-<img src="/assets/201044768kXr989ee3.png" style="zoom:70%" />
+
+![流程圖](./img/payment.png)
 
 1. 一開始，用戶使用手機或電腦，打開你的網站的時候，他們會給我們一個request，我們會給他一個response(以此次做的網頁為例，他們看到的網頁連結就是"/orders/訂單編號/checkout")  
 2. 在用戶瀏覽此網頁的時候，Server經過驗算，會偷偷塞一個token給用戶(不是rails給的喔)  
