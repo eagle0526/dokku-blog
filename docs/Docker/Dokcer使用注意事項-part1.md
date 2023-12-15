@@ -114,14 +114,3 @@ $ make cron_job_dir=$(pwd)/src/cronjobs/check-expire-product/ move-shared-to-cro
 ```shell
 $ docker run -it --name check-expire-product-bind -p 8080:80 -v /Users/yee0526/Desktop/TAGTOO/cron-jobs-v2/cron-jobs-v2/src/cronjobs/check-expire-product:/srv check-expire-product:latest
 ```
-
-
-
-
-
-<!-- 我現在要測試的是 - docker 的環境， poetry 的應用方式 + bind 的應用 -->
-
-<!-- bind 測試完了 -->
-<!-- 加上 poetry 試試 -->
-<!-- 有 poetry 無 bind -->
-<!-- 有 poetry 有 bind -->
