@@ -154,6 +154,11 @@ root@c254923ebbbf:/srv# python main.py
 
 
 
+PS. 如果之後想要重新回來開發同一個程式，如果之前沒有把 `bind` 過的 `container` 刪掉，下次只要重新啟動，就可以使用了(執行下面那一段指令)
+```shell
+$ docker container exec --interactive --tty check-expire-product-bind bash
+```
+
 
 ### 使用 docker 開發
 

@@ -3,7 +3,7 @@ title: ROR/Ruby
 sidebar_label: "DAY26. [ASTROCamp] Ruby-4"
 description: Ruby
 last_update:
-  date: 2022-11-12
+  date: 2022-11-14
 keywords:
   - 5xRuby
   - Ruby

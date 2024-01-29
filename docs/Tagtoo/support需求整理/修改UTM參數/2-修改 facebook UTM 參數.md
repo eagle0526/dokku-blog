@@ -30,13 +30,34 @@ ttl:product:23613
 ### 解決方法
 到 `api/configs/cpa_config.py` 這個資料夾中，就可以找到過往是如何 `修改/新增UTM` 的方法：
 
-```yaml
-<!-- cron_jobs/line_lap_feed/config.yaml -->
+```py
+# api/configs/cpa_config.py
 
-2878:
-  source: tagtoo
-  medium: cpc
-  term: 2878:474:0
+# ...省略
+def cpa_ttl(o, pb, **kwargs):
+    specific_products_id = (
+        'id=23608', 
+        'id=23611', 
+        'id=20549', 
+        'id=23617',
+        'id=23615',
+        'id=23609',
+        'id=23607',
+        'id=23606',
+        'id=23613',
+    )
+    url = kwargs.get('url', '')
+    if pb == 71:
+        for pid in specific_products_id:
+            if pid in url:
+                o.append_param({
+                    'utm_source': 'FB_T',
+                    'utm_medium': 'CPC',
+                    'utm_campaign': 'BIOAD',
+                })
+    return o
+
+cpa_builder.register(2162, cpa_ttl, 'eshop.ttl.com.tw')    
 ```
 
 ### PR、需求編號
