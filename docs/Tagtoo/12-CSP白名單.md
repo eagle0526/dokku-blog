@@ -81,6 +81,7 @@ function installGtag() {
 
 
 用上面那一串來找，或者用 安裝 gtag 的方式，隨便找一段 conversion，把
+```js
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11202968721"></script>
 <script>
@@ -90,5 +91,5 @@ function installGtag() {
 
   gtag('config', 'AW-11202968721');
 </script>
-
+```
 這一段拿去發送，就可以知道 google ads 到底送了哪些東西
