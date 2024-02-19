@@ -1,6 +1,6 @@
 ---
 title: 1376 - 新增 tiktok 追蹤事件
-sidebar_label: "1. [AddEvent] 新增追蹤事件"
+sidebar_label: "1. [AddEvent] 新增 tiktok 追蹤事件"
 description: 新增 tiktok 事件
 last_update:
   date: 2023-11-07

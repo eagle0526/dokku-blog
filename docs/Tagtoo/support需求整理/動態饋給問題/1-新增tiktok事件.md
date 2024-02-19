@@ -1,6 +1,6 @@
 ---
 title: 715 - 動態饋給問題
-sidebar_label: "1. [AddEvent] 715 - 標題亂碼修正"
+sidebar_label: "1. [reviseFeed] 715 - 標題亂碼修正"
 description: 動態饋給問題
 last_update:
   date: 2023-12-06

@@ -1,6 +1,6 @@
 ---
 title: SUSU - 客製化 feed
-sidebar_label: "2. [QueryString] SUSU - 客製化 feed"
+sidebar_label: "2. [reviseFeed] SUSU - 客製化 feed"
 description: 動態饋給問題
 last_update:
   date: 2023-12-20
