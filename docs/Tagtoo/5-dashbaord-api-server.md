@@ -296,7 +296,11 @@ dashboard-api        | Quit the server with CONTROL-C.
 ```
 
 
-這樣我們就成功啟動 server 了！！！！
+這樣我們就成功啟動 server 了！！！！     
+
+- GMC Feed 的格式（本地端）：http://0.0.0.0:8000/api/feed/merchantCenter?advertiser_id=3151
+- GMC Feed 的格式（實際）：https://dashboard-api.tagtoo.com.tw/api/feed/merchantCenter?advertiser_id=3139
+- GMC Feed 的格式（修改後的金錢版本）：https://dashboard-api.tagtoo.com.tw/api/feed/merchantCenter?advertiser_id=3139&currency=TWD
 
 
 
