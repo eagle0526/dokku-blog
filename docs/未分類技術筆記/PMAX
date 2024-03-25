@@ -1,0 +1,63 @@
+---
+sidebar_position: 2
+---
+
+
+
+0、前言
+------
+:::tip
+**寫此篇文章的動機**  
+PMAX 文件
+:::
+
+他是一種廣告型態 - performance Max 最高成效廣告
+
+把一些東西用 GADS API 拉進來，再到 AD CHief 操作
+
+
+
+tagtootest
+Qwer2022
+
+這一組帳號登入 GADS
+
+
+ADchief 文件
+
+
+tagtoo Wowhoo - 使用 ec
+
+
+adchief.com
+
+
+repo issue - model.py- Pmax Campaign Model 
+
+素材資源庫 - 裡面有各種圖片、文字素材
+
+new models
+
+GoogleAdAsset
+GogoleAdAssetGroup
+
+
+
+pmax 前端被設定好，會丟一個 graphSQL 丟給 adchief
+
+ads.py - 這一隻勝經常性跟 - google api 做交互
+
+
+先看一下 google api 指南
+query builder
+
+GAQL
+
+
+
+去找這個 repo - 這個是官方的 repo 有最原始的 example
+google-ads-python
+
+google-ads
+
+

@@ -1,6 +1,6 @@
 ---
-title: SUSU - 客製化 feed
-sidebar_label: "2. [reviseFeed] SUSU - 客製化 feed"
+title: SOUSOU - 新增 queryString 挑選出特定的產品
+sidebar_label: "2. [reviseFeed] SOUSOU - 新增 queryString 挑選出特定的產品"
 description: 動態饋給問題
 last_update:
   date: 2023-12-20
@@ -11,7 +11,7 @@ sidebar_position: 2
 ---
 
 
-由於 susu 的 feed 需求比較特別，因此要新增一段 queryString 來 query 指定的 產品
+由於 sousou 的 feed 需求比較特別，因此要新增一段 queryString 來 query 指定的 產品
 
 
 
