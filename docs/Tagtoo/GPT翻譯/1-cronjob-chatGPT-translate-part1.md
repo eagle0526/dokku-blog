@@ -1,32 +1,43 @@
 ---
-sidebar_position: 2
+title: cronjob-v2-sousou翻譯-part1
+sidebar_label: "sousou-translation-part1"
+description: sousou 的日文產品 title, description 翻譯
+last_update:
+  date: 2024-04-16
+keywords:
+  - chatGPT
+  - sousou
+sidebar_position: 1
 ---
+
 
 0、前言
 ------
 :::tip
 **寫此篇文章的動機**  
-這一篇紀錄串接 chatGPT 和 翻譯資料庫中的日文產品並重新會匯入
+這一篇紀錄串接 chatGPT 和 翻譯資料庫中的日文產品並把翻譯結果存進相對應的中文商品的 extra 欄位
 :::
 
 
-## sousou-product-translate
+## part1 - 先讓程式動起來
 
 ### 需求
-幫 SOUSOU 做中文商品資料翻譯，技術面想先確認如何確認某個商品翻譯過了？   
-討論出的機制：中文商品進來先去查有無對應的日文商品，有的話便將該商品的日文文案透過 ChatGPT 翻譯，並覆蓋原中文商品內容    
-若已有中文的商品則不更新，僅新增那些還不存在的，爾後每三天跑排程全部更新一次     
-title + description 研究看看能不能包在一包發，以節省 API call 次     
+`幫 SOUSOU 做中文商品資料翻譯，技術面想先確認如何確認某個商品翻譯過了？`     
+     
+討論出的機制：中文商品進來先去查有無對應的日文商品，有的話便將該商品的日文文案透過 ChatGPT 翻譯，並覆蓋原中文商品內容，若已有中文的商品則不更新，僅新增那些還不存在的，爾後每三天跑排程全部更新一次，title + description 研究看看能不能包在一包發，以節省 API call 次     
 
 
 ### 實際流程
 
-1. 先抓出所有日文商品
-2. 用日文商品抓出對應的中文商品
-3. 如果中文商品存在的話，把日文商品的標題和描述丟進 chatGPT 中一起翻譯
-4. 把 GPT 翻譯好的中文丟進中文產品的 extra 欄位
+1. 先抓出日文商品
+2. 把日文商品的 `product_key, title, description` 用 `list` 整理好
+3. 所有商品開始跑迴圈，並把 `日文商品的 product_key` 改成 `中文商品的 product_key`
+4. 用剛剛修改的中文商品 `product_key` 跑 ORM 抓出對應的中文商品
+5. 如果中文商品存在的話，把日文商品的標題和描述丟進 chatGPT 中一起翻譯
+6. 把 GPT 翻譯好的中文丟進中文產品的 extra 欄位
 
 
+### 以下是最初版的寫法，會有很多問題，之後會有其他版本的寫法
 ```py
 import logging
 import requests
@@ -57,6 +68,9 @@ def chatGPT(prompt):
     content = json_data['choices'][0]['message']['content']
     return content
 
+
+
+
 def old_database_translate():
     JP_products = OldDBProduct.objects.filter(
         advertiser_id = 1878,
@@ -64,6 +78,7 @@ def old_database_translate():
     )
 
     JP_data_sets = JP_products.values_list('product_key', 'title', 'description')
+    # JP_data_sets 會有所有的日文商品，因此先用 2 個商品跑迴圈試試
     for item in JP_data_sets[1:2]:
         CH_product_key = item[0].replace("jp:", "")        
         CH_products = OldDBProduct.objects.filter(
@@ -90,7 +105,7 @@ def old_database_translate():
 
 
 
-poetry 插件檔案
+### poetry 插件檔案
 ```toml
 [tool.poetry]
 name = "checkout-expect-product"
@@ -115,16 +130,3 @@ ipython = "^8.16.1"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
