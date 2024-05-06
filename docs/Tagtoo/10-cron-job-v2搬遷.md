@@ -288,10 +288,3 @@ $ docker run -it --name check-expire-product check-expire-product:latest /bin/ba
 root@c254923ebbbf:/srv# python main.py
 ```
 
-
-
-
-
-
-
-

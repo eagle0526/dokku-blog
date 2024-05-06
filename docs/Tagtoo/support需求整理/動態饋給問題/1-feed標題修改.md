@@ -1,5 +1,5 @@
 ---
-title: 715 - 動態饋給問題
+title: 715 - feed 標題修改
 sidebar_label: "1. [reviseFeed] 715 - 標題亂碼修正"
 description: 動態饋給問題
 last_update:
