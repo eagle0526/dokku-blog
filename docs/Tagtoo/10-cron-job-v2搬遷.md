@@ -38,18 +38,19 @@ sidebar_position: 10
  - src
   - cronjobs
    - check-expire-product   // 新增這個資料夾，之後檔案都放裡面
-    - dockerfile
+    - Dockerfile
     - main.py
     - pyproject.toml
 ```
 
-順便來說明一下這三個資料夾是做啥用的，`dockerfile` 就是等等會用到的環境、`main.py` 是主要運行的檔案、 `pyproject.toml` 則是因為我們主要使用 `poetry`，他是安裝插件的主要檔案
+順便來說明一下這三個資料夾是做啥用的，`Dockerfile` 就是等等會用到的環境、`main.py` 是主要運行的檔案、 `pyproject.toml` 則是因為我們主要使用 `poetry`，他是安裝插件的主要檔案   
+Ps. Dockerfile 這個資料夾一定要是大寫，因為跑 `CI/CD` 得時候，會指定找到這個檔案，如果是用這個 `dockerfile` 的話，會導致 `CI/CD` 發生錯誤    
 
-#### dockerfile 檔案內容
+#### Dockerfile 檔案內容
 
 以下是 docker 環境的檔案，直接複製貼上即可，`POETRY_VIRTUALENVS_CREATE` 這個一定要加，要不然會觸發不了 `poetry` ，不佳的話，你今天進到 docker 環境裡面，會讀不到 poetry 插件，你要再 `進到 poetry 的虛擬環境才行`，但是我們不需要使用 `poetry 的虛擬環境`
 
-```dockerfile
+```Dockerfile
 FROM python:3.9-slim
 
 
@@ -189,7 +190,7 @@ $ docker container exec --interactive --tty check-expire-product-bind bash
 
 
 
-### 2. 新增 dockerfile、main.py、pyproject.toml
+### 2. 新增 Dockerfile、main.py、pyproject.toml
 
 ```console
 <!-- cron-job-v2/src/cronjobs/check-expire-product -->
@@ -197,16 +198,16 @@ $ docker container exec --interactive --tty check-expire-product-bind bash
  - src
   - cronjobs
    - check-expire-product   // 新增這個資料夾，之後檔案都放裡面
-    - dockerfile
+    - Dockerfile
     - main.py
     - pyproject.toml
 ```
 
-順便來說明一下這三個資料夾是做啥用的，`dockerfile` 就是等等會用到的環境、`main.py` 是主要運行的檔案、 `pyproject.toml` 則是因為我們主要使用 `poetry`，他是安裝插件的主要檔案
+順便來說明一下這三個資料夾是做啥用的，`Dockerfile` 就是等等會用到的環境、`main.py` 是主要運行的檔案、 `pyproject.toml` 則是因為我們主要使用 `poetry`，他是安裝插件的主要檔案
 
-#### dockerfile 檔案內容
+#### Dockerfile 檔案內容
 
-```dockerfile
+```Dockerfile
 FROM python:3.9-slim
 
 

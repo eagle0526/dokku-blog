@@ -36,7 +36,7 @@ attributeFilter	      | Set to an array of attribute local names (without namesp
 
 
 
-### 實際應用
+### 實際應用 - 範例一
 
 範例網站 - https://events.lolinya.com.tw/content/consultation-472?utm_source=fb_consultation_teacher&utm_medium=ad&utm_campaign=fb_consultation_teacher_ad_teacher_20240412&utm_content=20240412
 
@@ -145,4 +145,42 @@ config.events = new Event({
 })
 ```
 
+### 實際應用範例 - 二
+
+#### 介紹
+
+這個客戶是填寫表單後，不會跳轉頁面，而是直接轉換該區塊 - https://www.dawncake-patisserie.com/forms/happylife
+
+#### 程式碼
+
+1. 先抓取會變動的區塊 - form
+2. 如果變動的話，把 `childList` 和 `subtree` 的參數印出來
+3. 最後用 `forEach` 把所有的 `ele` 給印出來，並尋找替換區塊後的文字 -> `謝謝!`
+
+Ps. 這邊要特別注意， `MutationObserver` 的發動，是只要監測的該區塊 `form` 有變動，就會觸發，並不需要特別用監聽器 `click` 之類的來特別觸發 
+```js
+config.events = new Event({
+  name: 'trackReserveWeddingCake',
+  trigger: pageView.path.contains('/forms/happylife'),
+  delay: 3000,
+  fn: () => {
+
+    // ...省略
+
+    const form = document.querySelector('#Content')
+    const mutationObserver = new MutationObserver(function (mutations) {
+      mutations.forEach((ele, index) => {
+        if (index === 0 && ele.target.textContent.includes('謝謝!')) {
+          logger.info('==========success submit form===========')
+          tracker('完成填單_喜餅')
+        }
+      })
+    })
+    mutationObserver.observe(form, {
+      childList: true,
+      subtree: true,
+    })
+  },
+})
+```
 

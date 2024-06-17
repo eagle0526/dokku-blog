@@ -301,7 +301,7 @@ unbound none
 
 停止 mysql 服務
 ```shell
-$ brew services stop mysql                                                                                            1 ↵  
+$ brew services stop mysql
 ------
 
 Stopping `mysql`... (might take a while)
