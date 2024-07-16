@@ -133,4 +133,5 @@ if __name__ == "__main__":
 
 
 ### 參考資料來源
-https://blog.csdn.net/liupeng19970119/article/details/111991651
+1. https://blog.csdn.net/liupeng19970119/article/details/111991651
+2. https://medium.com/pyladies-taiwan/python-%E7%9A%84-import-%E9%99%B7%E9%98%B1-3538e74f57e3 - 這文章有描述有各種的 import 陷阱

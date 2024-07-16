@@ -6,11 +6,14 @@ sidebar_position: 3
 Docker 使用注意事項 - part2
 ------
 
+### 詳細教學 pr
+我把詳細的操作步驟寫在這邊： https://github.com/eagle0526/docker-practice
+
 
 ### 針對特定資料夾建立 image
 
 ```shell
-$ image: docker build -t one:latest -f project-one/Dockerfile .
+$ docker build -t one:latest -f project-one/Dockerfile .
 ```
 
 
