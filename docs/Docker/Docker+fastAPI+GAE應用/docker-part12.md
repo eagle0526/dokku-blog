@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 12
 ---
 
 ## 雲端、本機資料庫連接設定 - version 2
