@@ -94,7 +94,7 @@ Terraform 配置中的資訊輸出為易於讀取和使用的格式，以便後�
 
 ### provider.tf
 
-* provider "google" {...}: 這段配置用來設定 Google Cloud Provider，它告訴 Terraform 如何與 Google Cloud Platform (GCP) 進行交互
+* provider "google": 這段配置用來設定 Google Cloud Provider，它告訴 Terraform 如何與 Google Cloud Platform (GCP) 進行交互
 * provider "kubernetes": 這段配置用來設定 Kubernetes Provider，它告訴 Terraform 如何與 Kubernetes 集群進行交互
  
 ```tf
