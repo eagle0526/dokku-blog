@@ -365,7 +365,7 @@ fastapi-deployment-7b9974ff89-zv92m   1/1     Running            0      3d2h
 
 
 ## GKE 其他常用指令
-
+  
 ### 重啟 pods
 
 如果今天想要重新啟動 pod，可以用以下的指令
@@ -396,5 +396,8 @@ Metrics-server is running at https://107.167.190.197/api/v1/namespaces/kube-syst
 ```
 
 
+### 刪除 Kubernetes
 
-
+```shell
+$ gcloud container clusters delete fastapi-cluster --zone asia-east1-a
+```

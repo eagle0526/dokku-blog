@@ -296,6 +296,10 @@ def skip_this_item(advertiser_id, item, publisher_id):
 像上面那樣設定好，我們來啟動server - `make run-dev-appserver`，並且輸入這個網址：`http://localhost:8080/v1/feed/facebook/2162` 就可以發現裡面的產品，都只剩下 `美妝` 類型的產品
 
 
+### scope 參數使用
+
+如果今天產品量太多，導致api讀不出來，可以使用這個參數來看一下feed狀況
+* https://legacy-api.tagtoo.com.tw/v3/feed/facebook/183?begin_value=0&scope=1000
 
 ### 參考連結：
 1. [api repo] : https://github.com/Tagtoo/api
