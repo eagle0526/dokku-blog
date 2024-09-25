@@ -159,3 +159,43 @@ yee0526@cron-jobs:/etc$ vim crontab
 做法在這邊 ： https://github.com/Tagtoo/cron-jobs/wiki/Create-a-new-FTP-account
 
 
+## Line feed 失效
+
+### 先登入 gcloud 中
+```shell
+$ gcloud compute --project "dashboard-dev-1230" ssh --zone "asia-east1-a" "cron-jobs"
+```
+
+### 查看各家客戶的 code 資訊
+
+```shell
+$ cd /mnt/cron-jobs-data/github/cron-jobs/cron_jobs/line_lap_feed
+```
+
+
+### 查看各家客戶的 CSV 資訊
+
+```shell
+$ cd /mnt/cron-jobs-data/vsftpd-virtual-root/TagtooLineFTPFeed 
+```
+
+### 進到 line_lap_feed 執行 ec_download 指令
+
+如果今天遇到 line_feed 失效，可以直接輸入以下的指令，看看目前的 cron-job 是否有正常運作。
+
+```shell
+$ cd /mnt/cron-jobs-data/github/cron-jobs/cron_jobs/line_lap_feed
+$ sudo python ec_download.py 107
+```
+ps. 執行 `ec_download.py` 這個程式，後面 107 是 ec_id 的編號
+
+
+如果輸入完後，還是發現 csv 無法產出，可以出入以下指令來查看 log：
+
+```shell
+$ cd /mnt/cron-jobs-data/github/cron-jobs/logging
+$ cat line_lap_feed.log | grep {ecid}
+```
+
+
+
