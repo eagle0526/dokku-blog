@@ -1,6 +1,6 @@
 {
   "label": "WebSocket",
-  "position": 1,
+  "position": 4,
   "link": {
     "type": "generated-index",
     "description": "WebSocket 介紹 + 在多種不同的環境下如何運作"
