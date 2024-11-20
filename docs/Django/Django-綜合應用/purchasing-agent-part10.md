@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 10
 ---
 
 ## part10 - 會員系統 part5: 解決重整頁面後，自動登出的問題

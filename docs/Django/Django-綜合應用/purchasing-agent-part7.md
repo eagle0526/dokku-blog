@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 ## part7 - 會員系統 part2: 新增 User 登入/登出 後端的 API

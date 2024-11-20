@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 ## part8 - 會員系統 part3: 新增 User 登入/登出 前端的 介面
@@ -23,13 +23,13 @@ sidebar_position: 6
 ## 2. 新增 Login.js 內容
 
 ### userState Hook
-1. const [username, setUsername] = useState('');：定義了一個 username 狀態變數，初始值是空字串。setUsername 函數用來更新這個變數的值。
+1. const [username, setUsername] = useState('');：定義了一個 `username` 狀態變數，初始值是空字串。setUsername 函數用來更新這個變數的值。
 2. const [password, setPassword] = useState('');：同樣地，password 變數用來儲存使用者輸入的密碼。
 
 ### handleSubmit
 1. 這是一個處理表單提交的異步函數，當使用者點擊「登入」按鈕時觸發
 2. e.preventDefault();：這行用來防止表單的預設行為（例如刷新頁面）。
-3. axios.post('http://localhost:8000/api/login/', { username, password })
+3. axios.post('http://localhost:8000/api/login/', { `username`, `password` })
 3-1. 向後端發送 POST 請求，網址是 http://localhost:8000/api/login/，並且將 username 和 password 作為請求的主體內容發送。
 3-2. 如果請求成功，會回傳使用者的登入資料並記錄在控制台中（console.log(response.data)），並顯示一個「登入成功！」的提示。
 

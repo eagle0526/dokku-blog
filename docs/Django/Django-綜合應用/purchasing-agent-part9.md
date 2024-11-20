@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 9
 ---
 
 ## part9 - 會員系統 part4: 新增 User 登入後的狀態
@@ -45,7 +45,7 @@ sidebar_position: 6
 
 ### UserContext.Provider
 * UserContext.Provider 是 Context API 中的提供者，它會將 user、setUser 和 loading 傳遞給所有消費這個 Context 的子組件。
-* {children} 是一個特性，表示這個組件可以包裹其他組件，並將 UserContext 的值提供給它們。這樣，所有包裹在 UserProvider 內的組件都可以透過 useContext(UserContext) 獲取 user、setUser 和 loading 的值。
+* `{children}` 是一個特性，表示這個組件可以包裹其他組件，並將 UserContext 的值提供給它們。這樣，所有包裹在 UserProvider 內的組件都可以透過 useContext(UserContext) 獲取 user、setUser 和 loading 的值。
 
 
 ```js
