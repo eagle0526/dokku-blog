@@ -1,8 +1,8 @@
 {
-  "label": "fastAPI - 綜合應用 - 創建資料庫 + SQLAlchemy + 連結DB",
+  "label": "代購網 - 前後端分離",
   "position": 8,
   "link": {
     "type": "generated-index",
-    "description": "FastAPI 相關教學文章"
+    "description": "Django 相關教學文章"
   }
 }
