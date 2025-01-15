@@ -86,6 +86,11 @@ if __name__ == "__main__":
 
 ### 第三種引入 - 上層資料夾的其他資料引入
 
+```md
+主要核心就是這一段，如果你在第二層之類的資料夾，他可以把你定位成前面的路徑，這樣就可以取用了
+os.path.abspath(os.path.dirname(__file__))
+```
+
 1. 先設定好 `function 資料夾下的 add.py 檔案內容`：
 
 * 記得一定要在 `function資料夾` 下面新增 `__init__.py` 這個檔案，這樣才可以讓 python 知道這個資料夾是可以 import 的

@@ -3,10 +3,11 @@ title: tagtoo/cron-job-v2
 sidebar_label: "10. [tagtoo] cron-job-v2"
 description: cron-job-v2搬家
 last_update:
-  date: 2023-12-11
+  date: 2024-12-30
 keywords:
   - Muffet
   - cron-job-v2
+  - product-service
 tags:
   - Muffet
 sidebar_position: 10
@@ -289,3 +290,88 @@ $ docker run -it --name check-expire-product check-expire-product:latest /bin/ba
 root@c254923ebbbf:/srv# python main.py
 ```
 
+## product service
+
+後面由於把 cron-job-v2 搬到 product-service，因此開發流程有變動：
+
+### 本地端
+1. 去修改最外層的 `docker-compose.yml` -> `PROJECT_DIR改成像這樣的格式 PROJECT_DIR: picture-to-description`
+2. volumes: 改成這樣的格式 - - ./services/task/picture-to-description/:/srv/
+3. 輸入以下兩段指令
+ - 3-1. `docker compose up task`
+ - 3-2. `docker exec -it product-service-task-1 bash`
+5. 到 task_vars.tf 把該 task 要執行的時間寫好
+6. 最後到 task-cloud-build-trigger -> 建置 task -> 改 task_var.tf -> make trigger (module) -> 去 cloud build 找 task -> 去 run 自己的 task
+
+### 1. 修改 docker-compose
+
+1. PROJECT_DIR: 這個要改成你檔案的名稱
+2. volumes: 這個也要改成你資料夾的名稱
+
+```yaml
+  task:
+    <<: *dev
+    build:
+      context: ./services/task
+      args:
+        PROJECT_DIR: picture-to-description       # 改這一行
+      dockerfile: Dockerfile
+    environment:
+      - APP_ENV=local
+      - EMAIL_USER_PW=qwertyuiop2016
+      - APP_ID=437027429368202
+      - APP_SECRET=0f11bceb4c57ca4e0a19bd703a4712b9
+      - AD_ID= 822361161148101
+      - USER_ACCESS_TOKEN= EAAGNeWCvQYoBOZBndUOzwqCvvIZBjaJ0rB0RG1uxzHjvrvMfeQML1W2E9FhZBW5tujv6ZCUOUdbuNzZB12dloLus1lQO9xXgCjUt37hQX3KGZB02mJ5lw95b8ycSg3Yi847ZAq5JTsrQKExvC0PpYIeGZCQXdbZAPEuDO38KWAuMakj2gJRtNVhhVatuL
+      - GMC_CREDENTIALS=/etc/secret-volume/gmc-api.json
+      - GOOGLE_WORKSPACE_CREDENTIALS=/etc/secret-volume/google-workspace-api.json
+      - DB_API_URL=https://db-api.tagtoo.com.tw
+    volumes:
+      - ./services/task/picture-to-description/:/srv/           # 改這一行
+      - ./service-account/gmc-api.json:/etc/secret-volume/gmc-api.json
+      - ./service-account/google-workspace-api.json:/etc/secret-volume/google-workspace-api.json
+      - ./services/task/shared:/srv/shared
+    # command: ["python", "sync_product.py"]
+```
+
+
+### 2. 建立 image 和 container
+
+```shell
+$ docker compose up task
+```
+
+### 3. 進入容器中
+
+進到容器後，就可以任意輸入執行資料夾的指令了
+
+```shell
+$ docker exec -it product-service-task-1 bash
+```
+
+### 建立 task 執行時間
+
+```tf title="task_vars.tf"
+
+    # picture to description - In UTC+8, H=22, D=3
+    task_picture_to_description = {
+      project_dir     = "picture-to-description"
+      gar_docker_name = "task-picture-to-description"
+      command         = ["python"]
+      args            = ["main.py"]
+      schedule        = "0 14 */3 * *"
+      cpu             = "500m"
+      memory          = "2Gi"
+    }
+
+```
+
+
+### 去 cloud build 找自己的 task
+
+到 GCLOUD - tagtoo product service 這個帳號，找到自己剛剛推上去的
+
+1. 到 cloud build 的觸發條件區，找到自己的 task，像我這次的是 - `task-picture-to-description-prod` -> 點選最右邊的 `執行`
+2. 到 GKE `workload`，找到自己的 pod - `	task-picture-to-description` -> 點進去
+3. 在上方找到 `立即執行`，點下去後你的程式就會自動跑了
+4. 到 GKE 的 log 看看程式有沒有正常運作 (點進 pod 裡面就有他自己的 log 可以看)
