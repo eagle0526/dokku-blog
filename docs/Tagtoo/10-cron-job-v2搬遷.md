@@ -341,6 +341,11 @@ root@c254923ebbbf:/srv# python main.py
 $ docker compose up task
 ```
 
+* 如果遇到有新的 package，記得重新 build 一個 image 出來
+```shell
+$ docker compose up task --build 
+```
+
 ### 3. 進入容器中
 
 進到容器後，就可以任意輸入執行資料夾的指令了

@@ -1,0 +1,8 @@
+{
+  "label": "CRM系統相關",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "這邊會整理在做 CRM 系統相關程式的 function"
+  }
+}

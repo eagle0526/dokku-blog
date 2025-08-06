@@ -32,6 +32,14 @@ Ps. 這一份文件只有紀錄後端部分，前端部分和GADS那邊要做的
 6. 現在再到 cloudSourceRepo 的頁面，就可以發現剛剛的 commit 有成功推上去了
 7. 最後到 cloud function 那邊點選編輯，並且把它部署上去 (有可能會沒有權限，沒有的話要請 patrick 開給你)
 
+## 虛擬環境開發 - 流程
+
+### 原因
+由於 google-ads 有停用之前一些 api 的版本，因此需要更新 api，但是本機環境太過混亂，無法成功更新，所以直接開一個 pyenv 的檔案，來開啟此檔案
+1. 進到 fake-env-ad-tools 此資料夾
+2. 輸入`source myenv/bin/activate`，開啟虛擬環境
+3. 更改 customer_id (如果今天該 google ads 已經沒有跟 tagtoo 合作，會出現權限問題)
+4. 進到 get_conversion_actions 該層，輸入 `python get_conversion_actions.py`
 
 ## 本機開發 - 詳細步驟(後端部分)
 
@@ -44,6 +52,7 @@ Ps. 也可以點這個連結直接到 `tagtoo-staging` : https://console.cloud.g
 ### 步驟二
 
 把 `ad-tools` 這個檔案給拉到本地端：https://github.com/Tagtoo/ad-tools   
+![enhanced-10](./img/enhanced%20-%2010%20-%20ad-tools.png)
 
 ### 步驟三
 
@@ -116,4 +125,7 @@ Ps. 如果遇到權限不足，像是下圖的問題，要跟 patrick 要權限
 
 
 
+## 虛擬環境開發
+
+![enhanced-11](./img/enhanced%20-%2011%20-%20fake-env-ad-tools.png)
 
