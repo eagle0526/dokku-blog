@@ -52,11 +52,31 @@ ps2. 如果今天沒有這個 token，會需要登入
 上面這樣新增好後，就可以再次輸入 `claude`，然後就會發現不用登入，就可以使用 claude
 
 
+## ccusage 監控 claude code 使用量
+
+偵測 claude token 的使用量
+
+### 安裝 ccusage
+```shell
+$ npm install -g ccusage
+```
+
+### 一些指令
+```shell
+# 查看每日使用量
+$ ccusage 
+
+# 查看每月使用量
+$ ccusage --monthly
+
+# 查看各自的 session 使用量
+c$ cusage --session
+```
 
 
-
-
-
+### 參考連結
+1. Claude Code 發佈 Command Line 的新工具：https://www.darrelltw.com/claude-code-new-command-line-tool/
+2. 如何安裝 token：https://www.reddit.com/r/ClaudeAI/comments/1jwvssa/claude_code_with_api_key/
 
 
 
