@@ -85,7 +85,8 @@ $ vi .mcp.json
 }
 ```
 
-### 進入 claude 確認
+
+### 7. 進入 claude 確認
 ```shell
 $ claude
 
@@ -96,14 +97,25 @@ claude 會跟說明是否有成功連結
 ```
 
 
+### 8. 把 mcp bot 加進指定的頻道
+
+確認好是否有連結後，可以把機器人加入指定的頻道中，這樣 mcp bot 才可以在此頻道發訊息
+
+```md
+/invite @Test-mcp-bot(這個是我 app 的名稱)
+```
 
 
+### 9. 進到 claude 指定頻道輸入資料
 
+```shell
+$ claude
 
+------
+針對某個頻道輸入：我是 mcp 機器人
+```
 
-
-
-
+這樣應該就可以看到 slack 那邊有 mcp 機器人回應
 
 
 
